@@ -19,7 +19,7 @@ public class BreakingBad extends JFrame{
         add(new Juego());
         setTitle("Breaking Bad");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(Commons.WIDTH, Commons.HEIGTH);
+        setSize(Dimensiones.WIDTH, Dimensiones.HEIGTH);
         setLocationRelativeTo(null);
         setIgnoreRepaint(true);
         setResizable(false);

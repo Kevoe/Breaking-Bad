@@ -27,7 +27,7 @@ import java.util.TimerTask;
 import javax.swing.JPanel;
 
 
-public class Juego extends JPanel implements Commons {
+public class Juego extends JPanel implements Dimensiones {
 
     Image ii;
     Timer timer;
@@ -41,7 +41,7 @@ public class Juego extends JPanel implements Commons {
 
 
     public Juego() {
-
+        
         addKeyListener(new TAdapter());
         setFocusable(true);
 
@@ -65,7 +65,7 @@ public class Juego extends JPanel implements Commons {
         int k = 0;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 6; j++) {
-                bloques[k] = new Bloque(j * Commons.WIDTH/6 + 15 , i * Commons.HEIGTH/20);
+                bloques[k] = new Bloque(j * Dimensiones.WIDTH/6 + 15 , i * Dimensiones.HEIGTH/20);
                 k++;
             }
         }
@@ -82,7 +82,7 @@ public class Juego extends JPanel implements Commons {
                         plataforma.getWidth(), plataforma.getHeight(), this);
 
             for (int i = 0; i < 30; i++) {
-                if (!bloques[i].isDestroyed())
+                if (!bloques[i].estaDestruido())
                     g.drawImage(bloques[i].getImage(), bloques[i].getX(),
                                 bloques[i].getY(), bloques[i].getWidth(),
                                 bloques[i].getHeight(), this);
@@ -95,8 +95,8 @@ public class Juego extends JPanel implements Commons {
             g.setColor(Color.BLACK);
             g.setFont(font);
             g.drawString(message,
-                         (Commons.WIDTH - metr.stringWidth(message)) / 2,
-                         Commons.WIDTH / 2);
+                         (Dimensiones.WIDTH - metr.stringWidth(message)) / 2,
+                         Dimensiones.WIDTH / 2);
         }
 
 
@@ -136,12 +136,12 @@ public class Juego extends JPanel implements Commons {
 
     public void checkCollision() {
 
-        if (bola.getRect().getMaxY() > Commons.BOTTOM) {
+        if (bola.getRect().getMaxY() > Dimensiones.BOTTOM) {
             stopGame();
         }
 
         for (int i = 0, j = 0; i < 30; i++) {
-            if (bloques[i].isDestroyed()) {
+            if (bloques[i].estaDestruido()) {
                 j++;
             }
             if (j == 30) {
@@ -204,7 +204,7 @@ public class Juego extends JPanel implements Commons {
                 Point pointBottom =
                     new Point(bolaLeft, bolaTop + bolaHeight + 1);
 
-                if (!bloques[i].isDestroyed()) {
+                if (!bloques[i].estaDestruido()) {
                     if (bloques[i].getRect().contains(pointRight)) {
                         bola.setXDir(-1);
                     }
@@ -221,7 +221,7 @@ public class Juego extends JPanel implements Commons {
                         bola.setYDir(-1);
                     }
 
-                    bloques[i].setDestroyed(true);
+                    bloques[i].setDestruido(true);
                 }
             }
         }

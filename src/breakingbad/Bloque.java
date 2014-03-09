@@ -10,32 +10,34 @@ import javax.swing.ImageIcon;
 
 public class Bloque extends Base {
 
-    String brickie = "images/crystal.png";
+    String brick = "images/crystal.png";  //path de la imagen del bloque
 
-    boolean destroyed;
+    boolean destruido;  // status del bloque (Destruida o no destruido)
 
 
     public Bloque(int x, int y) {
       this.x = x;
       this.y = y;
 
-      ImageIcon ii = new ImageIcon(this.getClass().getResource(brickie));
+      ImageIcon ii = new ImageIcon(this.getClass().getResource(brick));
       image = ii.getImage();
 
-      width = image.getWidth(null);
-      heigth = image.getHeight(null);
+      width = image.getWidth(null);     //ancho
+      heigth = image.getHeight(null);   //largo
 
-      destroyed = false;
+      destruido = false;                //cuando creas el bloque aun no esta destruido
     }
-
-    public boolean isDestroyed()
+    
+    //funcion que checa si un bloque esta destruido
+    public boolean estaDestruido()
     {
-      return destroyed;
+      return destruido;
     }
-
-    public void setDestroyed(boolean destroyed)
+    
+    //funcion para cambiar el status del bloque(destruido o no destruido)
+    public void setDestruido(boolean destruido)
     {
-      this.destroyed = destroyed;
+      this.destruido = destruido;
     }
 
 }
